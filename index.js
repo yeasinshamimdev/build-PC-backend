@@ -70,6 +70,7 @@ const run = async () => {
       res.send({ status: true, data: product });
     });
 
+    // get single motherboard
     app.get('/motherboard/:id', async (req, res) => {
       const id = req.params.id;
 
