@@ -30,7 +30,7 @@ const run = async () => {
     const keyboardCollection = db.collection('keyboard');
     const monitorCollection = db.collection('monitor');
     const mouseCollection = db.collection('mouse');
-
+    const casingCollection = db.collection('casing');
 
     // all products
     app.get('/products', async (req, res) => {
@@ -180,6 +180,21 @@ const run = async () => {
       const id = req.params.id;
 
       const result = await mouseCollection.findOne({ _id: ObjectId(id) });
+      res.send(result);
+    });
+
+    // casing  
+    app.get('/casing', async (req, res) => {
+      const cursor = casingCollection.find({});
+      const product = await cursor.toArray();
+
+      res.send({ status: true, data: product });
+    });
+
+    app.get('/casing/:id', async (req, res) => {
+      const id = req.params.id;
+
+      const result = await casingCollection.findOne({ _id: ObjectId(id) });
       res.send(result);
     });
 
